@@ -1,0 +1,120 @@
+<div class="spinner-overlay">
+    <div class="spinner-center">
+        <mat-progress-spinner mode="indeterminate" *ngIf="loading" color="accent" class="mat-spinner">
+        </mat-progress-spinner>
+    </div>
+</div>
+<ngx-spinner [type]="type" [color]="color" [fullScreen]="fullScreen" [bdColor]="bdColor"  [showSpinner]="showSpinner"></ngx-spinner>
+<h2 class="search-heading">Search Results
+    <div class="example-button-row">
+        <button mat-raised-button class="search-button" (click)="showFilterFields">Search Costing</button>
+    </div>
+</h2>
+<table *ngIf='showFilters' class="filter-fields">
+    <td>
+        <mat-form-field>
+            <mat-label> Search by costing ID </mat-label>
+            <input matInput type="number" placeholder=" Search by costing ID " [ngModel]="globalFilter" (ngModelChange)="applyFilter($event)">
+        </mat-form-field>
+    </td>
+    <td>
+        <mat-form-field>
+            <mat-label> Search by costing type </mat-label>
+            <input matInput placeholder=" Search by costing type " #input>
+        </mat-form-field>
+    </td>
+    <td>
+        <mat-form-field>
+            <mat-label> Search by status</mat-label>
+            <input matInput placeholder=" Search by status " #input>
+        </mat-form-field>
+    </td>
+    <td>
+        <mat-form-field>
+            <mat-label> Search by costing name </mat-label>
+            <input matInput placeholder=" Search by name " (keyup)="applyFilter($event)" #input>
+        </mat-form-field>
+    </td>
+    <td>
+        <mat-form-field>
+            <mat-label> Search by product type </mat-label>
+            <input matInput placeholder=" Search by product type " #input>
+        </mat-form-field>
+    </td>
+    <td>
+        <button mat-raised-button color="primary" (click)="applyFilter($event)">search</button>
+    </td>
+</table>
+<div class="mat-elevation-z8">
+    <div class="mat-table">
+
+        <table mat-table matSort [dataSource]="dataSource">
+
+            <ng-container matColumnDef="costingid">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef [style.background-color]="color"> COSTING ID </th>
+                <td mat-cell *matCellDef="let element" class="table-details-id"> {{element.costingid}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="costingtype">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef [style.background-color]="color"> COSTING
+                    TYPE </th>
+                <td mat-cell *matCellDef="let element" class="table-details"> {{element.costingtype}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="odspid">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef [style.background-color]="color"> ODSP ID </th>
+                <td mat-cell *matCellDef="let element" class="table-details"> {{element.odspid}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef [style.background-color]="color"> STATUS </th>
+                <td mat-cell *matCellDef="let element" class="table-details"> {{element.status}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="costingname">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef [style.background-color]="color"> COSTING NAME
+                </th>
+                <td mat-cell *matCellDef="let element" class="table-details"> {{element.costingname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="owner">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef [style.background-color]="color"> OWNER </th>
+                <td mat-cell *matCellDef="let element" class="table-details"> {{element.owner}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="producttype">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef [style.background-color]="color"> PRODUCT TYPE
+                </th>
+                <td mat-cell *matCellDef="let element" class="table-details"> {{element.producttype}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lastupdated">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef [style.background-color]="color"> LAST UPDATED ON
+                </th>
+                <td mat-cell *matCellDef="let element" class="table-details"> {{element.lastupdated}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="transactionid">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef [style.background-color]="color"> TRANSACTION ID
+                </th>
+                <td mat-cell *matCellDef="let element" class="table-details"> {{element.transactionid}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="adminsystem">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef [style.background-color]="color"> ADMIN SYSTEM
+                </th>
+                <td mat-cell *matCellDef="let element" class="table-details"> {{element.adminsystem}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef [style.background-color]="color"> ACTION </th>
+                <td mat-cell *matCellDef="let element" class="table-details"> {{element.action}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 5, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements"> </mat-paginator>
+    </div>

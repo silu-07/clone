@@ -1,0 +1,68 @@
+<router-outlet></router-outlet>
+
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  <span class="title">CEPNG (CredSolver)</span>
+  <button class="title-button">Training</button>
+
+  <span class="example-spacer"></span>
+  <a mat-button routerLink="/search">Search</a>
+  <a mat-button routerLink="/costing">Costing</a>
+  <a mat-button routerLink="/profile">Profile</a>
+  <a mat-button routerLink="/user">User</a>
+  <a mat-button>Default</a>
+
+  <button mat-icon-button [matMenuTriggerFor]="menuProfile">
+    <mat-icon class="user-icon">account_circle</mat-icon>
+  </button>
+  <mat-menu #menuProfile>
+    <mat-card class="header-content_profile-card">
+      <mat-card-header>
+        <div mat-card-avatar class="header-content_profile-image">
+          <mat-icon class="user-icon">account_circle</mat-icon>
+        </div>
+        <mat-card-title class="header-content_profile-name">Abinash Mohanta (External)</mat-card-title>
+        <mat-card-subtitle class="header-content_profile-content">
+          <p>abinash.mohanta@swissre.com</p>
+          <p>Version : develop.24_9b5rfl0</p>
+          <p> Role: Administration</p>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" routerLink="/search" (click)="sidenav.toggle()">
+      <mat-icon class="mat-table-details">search</mat-icon>
+      <span class="mat-table-details">Search</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" routerLink="/costing" (click)="sidenav.toggle()">
+      <mat-icon class="mat-table-details"> money</mat-icon>
+      <span class="mat-table-details">Costing</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" routerLink="/profile" (click)="sidenav.toggle()">
+      <mat-icon class="mat-table-details">supervised_user_circle</mat-icon>
+      <span class="mat-table-details">Profile</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" routerLink="/defaultparams" (click)="sidenav.toggle()">
+      <mat-icon class="mat-table-details">article</mat-icon>
+      <span class="mat-table-details">Default</span>
+    </button>
+    <mat-divider></mat-divider>
+  </mat-sidenav>
+  
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

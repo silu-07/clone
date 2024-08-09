@@ -1,0 +1,59 @@
+/* .spinner-overlay {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.286);
+    z-index: 10;
+    top: 0;
+    left: 0;
+    position: fixed;
+} */
+
+.spinner-center {
+    border-radius: 10px;
+    height: 70px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    z-index: 3;
+    opacity: 0.5;
+}
+
+.mat-spinner {
+    margin: 0% auto;
+}
+
+/* For coutom color of spinner */
+:host ::ng-deep .mat-spinner circle {
+    stroke: #006866;
+}
+
+/* For mat table */
+
+.table-details-id {
+    font-weight: bold;
+    color: #4682B4;
+}
+
+.table-details {
+    font-weight: 550;
+}
+
+.search-button {
+    background-color: #006866;
+    color: white;
+}
+
+.example-button-row {
+    text-align: center;
+}
+
+.mat-table {
+    border: solid 2px grey;
+}
+
+.filter-fields {
+    margin-left: auto;
+    margin-right: auto;
+}

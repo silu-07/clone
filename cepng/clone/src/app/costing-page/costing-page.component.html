@@ -1,0 +1,110 @@
+<div class="costing-page" fxLayout="row">
+  <div class="calculation-container">
+
+    <mat-accordion class="mat-accordion">
+      <mat-expansion-panel class="mat-expansion-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="mat-panel-title"> Products </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-checkbox (change)="isFacilityChecked" *ngIf="showFacility">Facility</mat-checkbox>
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width" appearance="outline" *ngIf="isFacility">
+                <mat-label>AUF</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width" appearance="outline"
+                *ngIf="isFacility && showCollateralFactor">
+                <mat-label>Collateral Factor</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="mat-accordion">
+      <mat-expansion-panel class="mat-expansion-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="mat-panel-title"> Transactions </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field appearance="outline" class="example-form-field">
+          <mat-label>Choose Inception Date</mat-label>
+          <input matInput [matDatepicker]="datepicker" [(ngModel)]="inceptionDate"
+            (dateChange)="showFacility; showCollateralFactor">
+          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+        </mat-form-field>
+
+        <table class="example-full-width" cellspacing="0">
+          <mat-form-field color="accent" appearance="outline">
+            <mat-label>Last Draw Down</mat-label>
+            <input matInput [matDatepicker]="picker1" [(ngModel)]="lastDrawDown"  (dateChange)="validateLastDrawDown">
+            <!-- <mat-error *ngIf="validateLastDrawDown.hasError('invalid')">
+              Must be a <strong>valid input</strong>!
+          </mat-error> -->
+            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          
+          <mat-form-field color="accent" appearance="outline">
+            <mat-label>First Repayment</mat-label>
+            <input matInput [matDatepicker]="picker2" [(ngModel)]="firstRepayment">
+            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+          </mat-form-field>
+        </table>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="mat-accordion">
+      <mat-expansion-panel class="mat-expansion-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="mat-panel-title"> Risk </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Collateral Level</mat-label>
+          <mat-select (selectionChange)="changeClient($event.value)">
+            <mat-option *ngFor="let collateral of collaterals" [value]="collateral.value">
+              {{collateral.viewValue}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td *ngIf="collateralState">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Collateral Provider Rating</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </td>
+            <td *ngIf="collateralState">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Collateral Type</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </td>
+            <td *ngIf="collateralState">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Collateral Amount</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
